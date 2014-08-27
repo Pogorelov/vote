@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   resources :delegation_entries
 
-  resources :delegations
+  resources :delegations do
+    collection { get :add_delegation_entry }
+  end
 
   resources :organizations
 

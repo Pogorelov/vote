@@ -2,7 +2,8 @@
   = # f.error_notification
 
   .delegation-entries
-    = link_to_add_fields "Add Delegate", f, :delegation_entries
+    = # link_to_add_fields "Add Delegate", f, :delegation_entries
+    = link_to 'Add Delegate', add_delegation_entry_delegations_path, remote: true
     = f.fields_for(:delegation_entries) do |builder|
       = render 'delegation_entry_fields', f: builder
 
