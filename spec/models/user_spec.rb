@@ -1,13 +1,14 @@
+require 'rails_helper'
+
 describe User do
+  describe '#email' do
+    subject(:user) { create :user, email: 'user@example.com' }
 
-  before(:each) { @user = User.new(email: 'user@example.com') }
-
-  subject { @user }
-
-  it { should respond_to(:email) }
-
-  it "#email returns a string" do
-    expect(@user.email).to match 'user@example.com'
+    it { is_expected.to respond_to :email }
+    it { expect(user.email).to eql 'user@example.com' }
   end
 
+  describe 'associations' do
+    it { is_expected.to have_many(:identities).dependent(:destroy) }
+  end
 end
