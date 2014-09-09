@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :identity do
-    voter nil
+    user nil
     provider "MyString"
     uid "MyString"
   end
