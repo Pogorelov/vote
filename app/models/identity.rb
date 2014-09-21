@@ -4,10 +4,11 @@ class Identity < ActiveRecord::Base
   validates_uniqueness_of :uid, scope: :provider
 
   def self.find_for_google_oauth(auth)
-    user = User.find_or_create_by(email: auth['info']['email']) do |user|
+    user = User.find_or_create_by( email: auth['info']['email'] ) do |user|
       user.name = auth['info']['name']
       user.password = Devise.friendly_token[0,20]
     end
-    Identity.find_or_create_by(provider: auth['provider'], uid: auth['uid'], user: user).user
+    Identity.find_or_create_by provider: auth['provider'], uid: auth['uid'], user: user
+    user
   end
 end
