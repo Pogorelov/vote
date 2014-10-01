@@ -27,6 +27,7 @@ gem 'browser-timezone-rails'
 gem 'redcarpet', '3.1.2'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
+gem 'omniauth-twitter'
 
 group :development do
   gem 'better_errors'
