@@ -31,5 +31,7 @@ Rails.application.routes.draw do
     member do
       get :delegate
     end
+    collection { get :finish_signup }
+    collection { post :process_signup }
   end
 end

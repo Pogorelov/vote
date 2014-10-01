@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!
-  after_action :verify_authorized
+  before_filter :authenticate_user!, except: [:finish_signup, :process_signup]
+  # after_action :verify_authorized
 
   def index
     @users = User.all
@@ -32,6 +32,18 @@ class UsersController < ApplicationController
   def delegate
     @user = User.find(params[:id])
     authorize @user
+  end
+
+  def finish_signup
+    @user = User.new(name: session['auth']['info']['name'])
+  end
+
+  def process_signup
+    auth_hash = session['auth']
+    auth_hash['info']['email'] = params['user']['email']
+    @user = User.find_or_create_for_omniauth(auth_hash)
+    sign_in @user
+    redirect_to root_url
   end
 
   private

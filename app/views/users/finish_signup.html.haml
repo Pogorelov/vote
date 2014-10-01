@@ -1,0 +1,10 @@
+.authform
+  = form_for(@user, :url => process_signup_users_path, :html => { :role => 'form'}) do |f|
+    %h3 Sign up
+    .form-group
+      = f.label :name
+      = f.text_field :name, :autofocus => true, class: 'form-control'
+    .form-group
+      = f.label :email
+      = f.email_field :email, class: 'form-control'
+    = f.submit 'Sign up', :class => 'button right'
